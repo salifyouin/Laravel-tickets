@@ -31,12 +31,20 @@
                                   <th>Utilisateur:</th>
                                   <td>{{$ticket->user->name}}</td>
                               </tr>
+                              <tr>
+                              <td>
+                              <a href="{{url('ticket/'.$ticket->id.'/traiter')}}"class="btn btn-info">Traiter<a/>
+                              </td>
+                              </tr>
                           </table>
+                          
                         </div>
+                        
                     </div>
-                  
+                    
             </div>
         </div>
+       
     </div>
 </div>
 @endsection

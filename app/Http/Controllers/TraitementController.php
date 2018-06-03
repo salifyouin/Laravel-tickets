@@ -3,18 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
 use App\Ticket;
-use Auth;
-use Session;
-class TicketController extends Controller
+class TraitementController extends Controller
 {
-    public function __construct()
-    {
-      
-        $this->middleware('auth');
-        $this->middleware('isadmin')->only('show');
-    }
+
+    
     
     /**
      * Display a listing of the resource.
@@ -31,10 +24,10 @@ class TicketController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        $priorites=DB::table('priorites')->pluck('nom','id');
-        return view('ticket.create',compact('priorites'));
+        $ticket=Ticket::findOrFail($id);
+        return view('traitement.new',compact('ticket'));
     }
 
     /**
@@ -45,17 +38,7 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-       $data=$request->all();
-        $this->validate($request,[
-            'message'=>'required|min:10',
-            'priorite_id'=>'required',
-        ]);
-        $data=array_add($data,'user_id',Auth::user()->id);
-        Ticket::create($data);
-        Session::flash('message','Votre ticket a ete cree avec succe');
-        return redirect('/home');
-
-
+        //
     }
 
     /**
@@ -64,7 +47,11 @@ class TicketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-   
+    public function show($id)
+    {
+        //
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -97,13 +84,5 @@ class TicketController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function consulter($id)
-    {
-        $ticket=Ticket::findOrFail($id);
-        $ticket->etat='En cours';
-        $ticket->save();
-        return view('ticket.show',compact('ticket'));
     }
 }

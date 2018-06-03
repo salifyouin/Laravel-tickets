@@ -8,7 +8,13 @@
                 <div class="card-header">Systeme de gestion des tickets</div>
 
                 <div class="card-body">
-                   <table class="table table-striped table-borfered table-hovered">
+
+                 @if(Auth::user()->role=='admin')
+                   @include('ticket.admin')
+                @else
+                   @include('ticket.user')
+                @endif
+                  <!-- <table class="table table-striped table-bordered table-hovered">
                        <tr>
                            <th>Messages</th>
                            <th>Priorites</th>
@@ -31,7 +37,7 @@
                            </td>
                        </tr>
                        @endforeach
-                   </table>
+                   </table>-->
 
                 </div>
             </div>
