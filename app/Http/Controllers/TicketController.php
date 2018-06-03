@@ -59,7 +59,8 @@ class TicketController extends Controller
      */
     public function show($id)
     {
-        //
+        $ticket=Ticket::findOrFail($id);
+        return view('ticket.show',compact('ticket'));
     }
 
     /**
@@ -94,5 +95,13 @@ class TicketController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function consulter($id)
+    {
+        $ticket=Ticket::findOrFail($id);
+        $ticket->etat='En cours';
+        $ticket->save();
+        return redirect('ticket/'.$id.'/show');
     }
 }

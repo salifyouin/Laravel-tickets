@@ -27,7 +27,7 @@
                            <td>{{$ticket->user->name}}</td>
                            @endif
                            <td>
-                               <a href=""class="btn btn-info">Consulter</>
+                               <a href="{{url('ticket/'.$ticket->id.'/consulter')}}"class="btn btn-info">Consulter</>
                            </td>
                        </tr>
                        @endforeach
