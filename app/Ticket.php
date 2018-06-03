@@ -13,4 +13,11 @@ class Ticket extends Model
         'user_id',
         'priorite_id'
     ];
+    public function priorite(){
+        return $this->belongsTo(\App\Priorite::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(\App\User::class);
+    }
 }

@@ -20,3 +20,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 /*ticket*/
 Route::get('ticket/nouveau', 'TicketController@create');
+Route::post('ticket/enregistrer', 'TicketController@store');

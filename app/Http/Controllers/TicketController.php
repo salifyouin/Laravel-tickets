@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use DB;
+use App\Ticket;
+use Auth;
+use Session;
 class TicketController extends Controller
 {
     /**
@@ -23,7 +26,8 @@ class TicketController extends Controller
      */
     public function create()
     {
-        return view('ticket.create');
+        $priorites=DB::table('priorites')->pluck('nom','id');
+        return view('ticket.create',compact('priorites'));
     }
 
     /**
@@ -34,7 +38,17 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $data=$request->all();
+        $this->validate($request,[
+            'message'=>'required|min:10',
+            'priorite_id'=>'required',
+        ]);
+        $data=array_add($data,'user_id',Auth::user()->id);
+        Ticket::create($data);
+        Session::flash('message','Votre ticket a ete cree avec succe');
+        return redirect('/home');
+
+
     }
 
     /**

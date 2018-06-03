@@ -19,6 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootsrap/bootstrap.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -55,7 +56,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Se deconnecter') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -68,7 +69,11 @@
                 </div>
             </div>
         </nav>
-
+         @if(Session::has('message'))
+         <div class="alert alert-info" role="alert">
+          <p style="text-align:center"> {{Session::get('message')}}</p>
+         </div>
+         @endif
         <main class="py-4">
             @yield('content')
         </main>
