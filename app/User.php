@@ -30,4 +30,9 @@ class User extends Authenticatable
     public function tickets(){
         return $this->hasMany(\App\Tickets::class);
     }
+    //Chaque utilisateur peut effectuer plusieurs traitements
+    public function traitemnts()
+    {
+      return $this->hasMany(\App\Traitement::class);
+    }
 }

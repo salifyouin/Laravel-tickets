@@ -23,6 +23,7 @@ Route::get('ticket/nouveau', 'TicketController@create');
 Route::post('ticket/enregistrer', 'TicketController@store');
 Route::get('ticket/{id}/consulter', 'TicketController@consulter');
 Route::get('ticket/{id}/show', 'TicketController@show');
+Route::get('/admin/tickets/export/xls','TicketController@export_xls');
 
 /*traitement*/
 Route::get('ticket/{id}/traiter', 'TraitementController@create');

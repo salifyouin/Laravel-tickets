@@ -13,11 +13,15 @@ class Ticket extends Model
         'user_id',
         'priorite_id'
     ];
+    //chaque tickets peut avoir plusieurs priorites
     public function priorite(){
         return $this->belongsTo(\App\Priorite::class);
     }
-
+    //chaque utilisateur peut traiter plusieurs tickets
     public function user(){
         return $this->belongsTo(\App\User::class);
     }
+      public function traitements(){
+        return $this->hasMany(\App\Traitement::class);
+      }
 }

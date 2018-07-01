@@ -13,4 +13,19 @@ class Traitement extends Model
         'user_id',
         'ticket_id'
     ];
+
+    //un traitement conserne 1 et seul utlisateur(technicien)
+    public function technicien()
+    {
+      return $this->belongsTo(\App\User::class,'user_id');
+    }
+
+    //chaque traitement concerne un et un seul tiket
+    public function ticket()
+    {
+      return $this->belongsTo(\App\Ticket::class);
+    }
+
+
+    
 }

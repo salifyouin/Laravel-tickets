@@ -50,7 +50,7 @@
 </div>
 
 <div class="card">
-    <div class="card-header text-white bg-success mb-3">Liste des tickets</div>
+    <div class="card-header text-white bg-success mb-3">Liste des tickets </div>
         <div class="card-body">
         <table class="table table-striped table-bordered table-hovered">
                        <tr>
